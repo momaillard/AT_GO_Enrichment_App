@@ -7,7 +7,7 @@ if (!require("shinydashboard")) install.packages('shinydashboard')
 if (!require("DT")) install.packages('DT')
 if (!require("topGO")) BiocManager::install("topGO")
 if (!require("shinycssloaders")) install.packages('shinycssloaders')
-if (!require("shinyBS")) install.packages('shinyBS')
+
 
 
 
@@ -19,24 +19,16 @@ library(shinydashboard)
 library(DT)
 library(topGO)
 library(shinycssloaders)
-library(shinyBS)
 
-pathToUniverse <- "./TF_enrichment/maizeAnnotationGO_GamerV2.txt"
 imgsize <- "auto 75%"
-#img <- 'http://northerntechmap.com/assets/img/loading-dog.gif'
-#img <- 'https://i.makeagif.com/media/9-20-2017/lk3iNO.gif'
-#img <- "https://thumbs.gfycat.com/KeyTallAntbear-size_restricted.gif"
 img <- "http://static.demilked.com/wp-content/uploads/2016/06/gif-animations-replace-loading-screen-11.gif"
+pathToSrc <- "https://github.com/momaillard/AT_GO_Enrichment_App/raw/master/src/function_Source.R"
+pathToUniverse <- "https://github.com/momaillard/AT_GO_Enrichment_App/raw/master/data/GOuniverseAT.txt" # Data produce from ATH_GO_GOSLim from TAIR (2020) with a hand made script 
 
-###############################
-#####   Resume des data   #####
-###############################
-
-source(file = "src/function_Source.R")
-
+source(file = pathToSrc)
 
 ui <- dashboardPage(skin = "blue",
-                dashboardHeader(title = "Gene Ontology"),
+                dashboardHeader(title = "AtGO enrichment"),
                 dashboardSidebar(
                     sidebarMenu(id = "tabs",
                         menuItem("Gene_Ontology", tabName = "Gene_ontology_Test", icon = icon("chart-line"))
@@ -101,7 +93,7 @@ ui <- dashboardPage(skin = "blue",
                         tabName = "Gene_ontology_Test",
                                 sidebarPanel(
                                     titlePanel("Get Enrichment Results"),
-                                    textInput(input = "geneName", label = "Enter Gene ID", value = "AT1G21910;AT5G56030;AT5G56010;AT5G62390;AT3G08970;AT3G24520;AT2G41690;AT1G67970;AT5G47550;AT2G38470;AT5G07350;AT2G26150;AT5G43840;AT4G19630;AT5G45710;AT5G07100;AT3G63350;AT5G62020;AT5G12140;AT2G38340;AT4G25380;AT4G18880;AT3G51910;AT1G32330;AT5G52640;AT5G61780;AT5G27660;AT5G03720;AT1G43160;AT1G77570"),
+                                    textInput(input = "geneName", label = "Enter Genes ID separated by a ';'", value = "AT1G21910;AT5G56030;AT5G56010;AT5G62390;AT3G08970;AT3G24520;AT2G41690;AT1G67970;AT5G47550;AT2G38470;AT5G07350;AT2G26150;AT5G43840;AT4G19630;AT5G45710;AT5G07100;AT3G63350;AT5G62020;AT5G12140;AT2G38340;AT4G25380;AT4G18880;AT3G51910;AT1G32330;AT5G52640;AT5G61780;AT5G27660;AT5G03720;AT1G43160;AT1G77570"),
                                     pickerInput("mySubontology",label = "Pick your SubOntology", multiple = FALSE, choices = c("BP","MF","CC")),
                                     actionButton("button_action", "Launch_Test", class = "btn-success"),
                                     downloadButton("getGO.df", "download results", class = "btn-warning") 
@@ -136,7 +128,7 @@ server <- function(input, output, session) {
 
     getEnrichmentResults <- reactive({
         if(is.null(myClickbutton_action$GeneList)) return()
-        enrichmentTest("./data/GOuniverseAT.txt", myClickbutton_action$GeneList, myClickbutton_action$SubOnto)
+        enrichmentTest(pathToUniverse, myClickbutton_action$GeneList, myClickbutton_action$SubOnto)
     })
 
     output$resultsTest <- DT::renderDataTable({

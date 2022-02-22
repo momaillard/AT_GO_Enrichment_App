@@ -22,12 +22,12 @@ enrichmentTest <- function (universeFile, interestingGenes, subOntology){
   print(paste0("mySummary ", mysummary))
   print(paste0("valeur de summary 0.01 = ",mysummary))
   print(resultElim)
-  if (length(mysummary) == 3 & as.numeric(mysummary[3]) > 30 ){ # Test si il y a des GO significatifs + bug quand un seul GO est significatif ? d'ou cette deuxieme condition ###
+  if (length(mysummary) == 3 & as.numeric(mysummary[3]) > 30 ){ # Test si il y a des GO significatifs + bug quand un seul GO est significatif ? d'où cette deuxieme condition ###
     print(paste0("mysummary [3] = ", mysummary[3]))
     numsignif <- as.integer(mysummary[[3]])
   }
   else {
-    numsignif <- 50 # si pas de GO significatifs alors on print les 30 premiers termes
+    numsignif <- 50 # si pas de GO significatifs alors on print les 50 premiers termes
   }
   print(paste0(numsignif, " termes conservés"))
   
@@ -39,8 +39,6 @@ enrichmentTest <- function (universeFile, interestingGenes, subOntology){
   for( el in NUMERIC_COL){
     allRes[,el] <- as.numeric(allRes[,el])
   }
-  
-  # allRes$elimFisher <- as.numeric(allRes$elimFisher)
   
   print("Fin calucl Enrichissement")
   findDeScript <- TRUE
