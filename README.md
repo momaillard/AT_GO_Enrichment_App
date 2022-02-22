@@ -2,7 +2,7 @@
 
 This little shiny app perform gene enrichment test for Arabidopsis thaliana. It uses TopGO R package and associated function **[1]**. 
 References data were obtained from TAIR 2020 and formatted by a hand made perl script provided in /src. 
-
+If you don't want to download R or associated packages you can try this app is available at https://momaillard.shinyapps.io/AtGO_enrichment/
 
 ## Usage
 Users just have to enter some arabidopsis genes ID (format : AT3G08970) and click on the "Launch_Test" button. 
