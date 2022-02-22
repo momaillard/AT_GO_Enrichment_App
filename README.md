@@ -2,6 +2,16 @@
 
 This little shiny app perform gene enrichment test for Arabidopsis thaliana. It uses TopGO R package and associated functions **[1]**. 
 References data were obtained from TAIR 2020 and formatted by a hand made perl script provided in /src. 
+
+
+You can launch this app directly in R by using :
+(be carefull as it will first download R package needed so first usage might take some time)
+
+```
+library(shiny)
+runGitHub("AT_GO_Enrichment_App","momaillard")
+```
+
 If you don't want to download R or associated packages you can try this app is available at https://momaillard.shinyapps.io/AtGO_enrichment/
 
 ## Usage
