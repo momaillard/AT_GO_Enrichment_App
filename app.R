@@ -5,6 +5,7 @@ if (!require("ggplot2")) install.packages('ggplot2')
 if (!require("shinyWidgets")) install.packages('shinyWidgets')
 if (!require("shinydashboard")) install.packages('shinydashboard')
 if (!require("DT")) install.packages('DT')
+if (!require("DT")) BiocManager::install("AnnotationDbi")
 if (!require("topGO")) BiocManager::install("topGO")
 if (!require("shinycssloaders")) install.packages('shinycssloaders')
 
@@ -17,10 +18,12 @@ library(ggplot2)
 library(shinyWidgets)
 library(shinydashboard)
 library(DT)
+library(BiocManager)
+options(repos = BiocManager::repositories())
 library(topGO)
 library(shinycssloaders)
 
-imgsize <- "auto 75%"
+imgsize <- "auto 50%"
 img <- "http://static.demilked.com/wp-content/uploads/2016/06/gif-animations-replace-loading-screen-11.gif"
 pathToSrc <- "https://github.com/momaillard/AT_GO_Enrichment_App/raw/master/src/function_Source.R"
 pathToUniverse <- "https://github.com/momaillard/AT_GO_Enrichment_App/raw/master/data/GOuniverseAT.txt" # Data produce from ATH_GO_GOSLim from TAIR (2020) with a hand made script 
