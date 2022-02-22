@@ -9,6 +9,8 @@ Users just have to enter some arabidopsis genes ID (format : AT3G08970) and clic
 A download button is available to download the data frame of results.
 This app also perform a plotting of the results for visualization purpose.
 
+to get more information about test perform ->  https://bioconductor.org/packages/release/bioc/vignettes/topGO/inst/doc/topGO.pdf
+
 
 
 ## bibliography
