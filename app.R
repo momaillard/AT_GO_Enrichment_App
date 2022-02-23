@@ -24,7 +24,8 @@ library(topGO)
 library(shinycssloaders)
 
 imgsize <- "auto 50%"
-img <- "http://static.demilked.com/wp-content/uploads/2016/06/gif-animations-replace-loading-screen-11.gif"
+#img <- "http://static.demilked.com/wp-content/uploads/2016/06/gif-animations-replace-loading-screen-11.gif"
+img <- "http://northerntechmap.com/assets/img/loading-dog.gif"
 pathToSrc <- "https://github.com/momaillard/AT_GO_Enrichment_App/raw/master/src/function_Source.R"
 pathToUniverse <- "https://github.com/momaillard/AT_GO_Enrichment_App/raw/master/data/GOuniverseAT.txt" # Data produce from ATH_GO_GOSLim from TAIR (2020) with a hand made script 
 
