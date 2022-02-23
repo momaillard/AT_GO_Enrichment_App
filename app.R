@@ -5,7 +5,7 @@ if (!require("ggplot2")) install.packages('ggplot2')
 if (!require("shinyWidgets")) install.packages('shinyWidgets')
 if (!require("shinydashboard")) install.packages('shinydashboard')
 if (!require("DT")) install.packages('DT')
-if (!require("DT")) BiocManager::install("AnnotationDbi")
+if (!require("AnnotationDbi")) BiocManager::install("AnnotationDbi")
 if (!require("topGO")) BiocManager::install("topGO")
 if (!require("shinycssloaders")) install.packages('shinycssloaders')
 
@@ -95,22 +95,25 @@ ui <- dashboardPage(skin = "blue",
                     tabItems(
                         tabItem(tags$body(HTML("<div id='divLoading'> </div>")),
                         tabName = "Gene_ontology_Test",
-                            column(width = 6, offset =3,
-                                box(width = 12,
-                                    column(12, align = "center", titlePanel("Get Enrichment Results")),
+                            column(width = 6, offset = 3,
+                                box(width = 12, solidHeader = TRUE, title = "Get Enrichment Results", status = "primary",
+                                    #column(12, align = "center", titlePanel("Get Enrichment Results")),
                                     column(12, align = "center", textInput(input = "geneName", label = "Enter Genes ID separated by a ';'", value = "AT1G21910;AT5G56030;AT5G56010;AT5G62390;AT3G08970;AT3G24520;AT2G41690;AT1G67970;AT5G47550;AT2G38470;AT5G07350;AT2G26150;AT5G43840;AT4G19630;AT5G45710;AT5G07100;AT3G63350;AT5G62020;AT5G12140;AT2G38340;AT4G25380;AT4G18880;AT3G51910;AT1G32330;AT5G52640;AT5G61780;AT5G27660;AT5G03720;AT1G43160;AT1G77570")),
                                     column(6, align = "center", offset = 3, pickerInput("mySubontology",label = "Pick your SubOntology", multiple = FALSE, choices = c("BP","MF","CC"))),
                                     column(12, align = "center", actionButton("button_action", "Launch_Test", class = "btn-success"),
                                     downloadButton("getGO.df", "download results", class = "btn-warning"),
                                     actionButton("plot_Res", "plot The Results", class = "btn-success")
-                                    )
+                                    ),
+                                    column(12, align = "center", p("all data are available at", strong("https://github.com/momaillard/AT_GO_Enrichment_App")))
                                 )
                             ),
-                                box(width = 8,
-                                    DT::dataTableOutput("resultsTest")),
-                                box(width = 4,
-                                    plotOutput("plotTopGO",height = "750px" ))
-                                )                       
+                            box(width = 7,
+                                DT::dataTableOutput("resultsTest")
+                            ),
+                            box(width = 5,
+                                plotOutput("plotTopGO",height = "750px" )
+                            )
+                        )                       
                     )
                 )
             
