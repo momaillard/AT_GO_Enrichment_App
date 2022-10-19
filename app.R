@@ -27,7 +27,7 @@ imgsize <- "auto 50%"
 #img <- "http://static.demilked.com/wp-content/uploads/2016/06/gif-animations-replace-loading-screen-11.gif"
 img <- "http://northerntechmap.com/assets/img/loading-dog.gif"
 pathToSrc <- "https://github.com/momaillard/AT_GO_Enrichment_App/raw/master/src/function_Source.R"
-pathToUniverse <- "https://github.com/momaillard/AT_GO_Enrichment_App/raw/master/data/GOuniverseAT.txt" # Data produce from ATH_GO_GOSLim from TAIR (2020) with a hand made script 
+pathToUniverse <- "https://github.com/momaillard/AT_GO_Enrichment_App/raw/master/data/GO_Universe_2022.txt" # Data produce from ATH_GO_GOSLim from TAIR (2020) with a hand made script 
 
 source(file = pathToSrc)
 
@@ -107,7 +107,7 @@ ui <- dashboardPage(skin = "blue",
                                     column(12, align = "center", p("all data are available at", strong("https://github.com/momaillard/AT_GO_Enrichment_App")))
                                 )
                             ),
-                            box(width = 7,
+                            box(width = 12, # set it back to 7 
                                 DT::dataTableOutput("resultsTest")
                             ),
                             box(width = 5,
